@@ -337,7 +337,7 @@ extension Comparable {
 
 /// Which generation of SMC charging keys to use
 enum SMCChargingAPI {
-    case legacy     // CH0B/CH0C/CH0I (M1/M2/M3)
-    case tahoe      // CHTE/CHIE (newer Macs)
+    case legacy     // CH0B/CH0C/CH0I — M1/M2/M3, including macOS 14
+    case tahoe      // CHTE/CHIE — newer Macs
     case unknown    // Not yet detected
 }

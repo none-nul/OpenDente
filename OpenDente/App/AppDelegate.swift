@@ -132,7 +132,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             : ChargingMode.idle.batteryIconName(percentage: pct, isCharging: false)
         if iconName != lastIconName {
             let config = NSImage.SymbolConfiguration(pointSize: 16, weight: .regular)
-            button.image = NSImage(systemSymbolName: iconName, accessibilityDescription: "Battery \(pct)%")?.withSymbolConfiguration(config)
+            button.image = NSImage(systemSymbolName: iconName, accessibilityDescription: String(localized: "Battery \(pct)%"))?.withSymbolConfiguration(config)
             lastIconName = iconName
         }
 

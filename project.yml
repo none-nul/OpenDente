@@ -3,6 +3,11 @@ options:
   bundleIdPrefix: com.opendente
   deploymentTarget:
     macOS: "14.0"
+  developmentLanguage: en
+  knownRegions:
+    - en
+    - Base
+    - zh-Hans
   xcodeVersion: "16.0"
   groupSortPosition: top
   generateEmptyDirectories: true
@@ -15,6 +20,9 @@ settings:
     SWIFT_UPCOMING_FEATURE_GLOBAL_ACTOR_ISOLATED_TYPES_USABILITY: false
     DEAD_CODE_STRIPPING: YES
     ENABLE_USER_SCRIPT_SANDBOXING: NO
+  configFiles:
+    Debug: Config/App.xcconfig
+    Release: Config/App.xcconfig
 
 targets:
   OpenDente:
@@ -27,16 +35,15 @@ targets:
       - path: Shared
     resources:
       - path: OpenDente/Resources/Assets.xcassets
+      - path: OpenDente/Resources/zh-Hans.lproj
     settings:
       base:
         INFOPLIST_FILE: OpenDente/Resources/Info.plist
         CODE_SIGN_ENTITLEMENTS: OpenDente/Resources/OpenDente.entitlements
         PRODUCT_BUNDLE_IDENTIFIER: com.opendente.app
         PRODUCT_NAME: OpenDente
-        MARKETING_VERSION: "0.1.0"
+        MARKETING_VERSION: "0.2.0"
         CURRENT_PROJECT_VERSION: "1"
-        CODE_SIGN_STYLE: Automatic
-        DEVELOPMENT_TEAM: P4D7A49H95
         ENABLE_HARDENED_RUNTIME: true
         COMBINE_HIDPI_IMAGES: true
     entitlements:
@@ -79,8 +86,6 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: com.opendente.helper
         PRODUCT_NAME: com.opendente.helper
         SKIP_INSTALL: true
-        CODE_SIGN_STYLE: Automatic
-        DEVELOPMENT_TEAM: P4D7A49H95
         ENABLE_HARDENED_RUNTIME: true
         CODE_SIGN_ENTITLEMENTS: OpenDenteHelper/OpenDenteHelper.entitlements
 
@@ -95,5 +100,3 @@ targets:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.opendente.tests
         GENERATE_INFOPLIST_FILE: true
-        CODE_SIGN_STYLE: Automatic
-        DEVELOPMENT_TEAM: P4D7A49H95

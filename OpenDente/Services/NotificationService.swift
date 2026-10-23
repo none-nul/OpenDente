@@ -76,23 +76,23 @@ final class NotificationService: NSObject, UNUserNotificationCenterDelegate {
         let content = UNMutableNotificationContent()
         switch event {
         case .chargeLimitReached:
-            content.title = "Charge Limit Reached"
-            content.body = "Battery has reached your charge limit. Charging paused."
+            content.title = String(localized: "Charge Limit Reached")
+            content.body = String(localized: "Battery has reached your charge limit. Charging paused.")
         case .topUpComplete:
-            content.title = "Top Up Complete"
-            content.body = "Battery is fully charged at 100%."
+            content.title = String(localized: "Top Up Complete")
+            content.body = String(localized: "Battery is fully charged at 100%.")
         case .heatProtection:
-            content.title = "Heat Protection Active"
-            content.body = "Charging paused due to high battery temperature."
+            content.title = String(localized: "Heat Protection Active")
+            content.body = String(localized: "Charging paused due to high battery temperature.")
         case .dischargeComplete:
-            content.title = "Discharge Complete"
-            content.body = "Battery has discharged to your charge limit."
+            content.title = String(localized: "Discharge Complete")
+            content.body = String(localized: "Battery has discharged to your charge limit.")
         case .systemChargeLimitConflict:
-            content.title = "System Charge Limit Active"
-            content.body = "macOS Charge Limit is preventing charging. Lower it in System Settings > Battery."
+            content.title = String(localized: "System Charge Limit Active")
+            content.body = String(localized: "macOS Charge Limit is preventing charging. Lower it in System Settings > Battery.")
         case .inhibitFailed:
-            content.title = "Charging Control Failed"
-            content.body = "Unable to stop charging. Try unplugging and re-plugging the charger."
+            content.title = String(localized: "Charging Control Failed")
+            content.body = String(localized: "Unable to stop charging. Try unplugging and re-plugging the charger.")
         }
         content.sound = .default
 

@@ -96,10 +96,14 @@ struct PopoverView: View {
                           ? "exclamationmark.triangle.fill"
                           : charging.mode.statusBarIcon)
                         .font(.system(size: 10))
-                    Text(charging.systemChargeLimitConflict
-                         ? "System Limit Active"
-                         : charging.mode.displayName)
-                        .font(.system(size: 11))
+                    Group {
+                        if charging.systemChargeLimitConflict {
+                            Text("System Limit Active")
+                        } else {
+                            L10n.text(charging.mode.displayName)
+                        }
+                    }
+                    .font(.system(size: 11))
                 }
                 .foregroundStyle(charging.systemChargeLimitConflict ? .orange : .secondary)
             }
@@ -280,7 +284,8 @@ struct PopoverView: View {
         case .adapterPower:
             guard adapterVisible, let power = state.adapterPower, power > 0 else { return nil }
             if let max = state.adapterInfo?.watts, max > 0 {
-                return ("Adapter Power", String(format: "%.1f W of %d W", power, max))
+                let formatted = String(format: String(localized: "%.1f W of %d W"), power, max)
+                return ("Adapter Power", formatted)
             }
             return ("Adapter Power", String(format: "%.1f W", power))
         case .adapterName:
@@ -324,14 +329,31 @@ struct PopoverView: View {
 
     private func detailRow(_ label: String, value: String) -> some View {
         HStack {
-            Text(label)
+            localizedDetailText(label)
                 .font(.system(size: 11))
                 .foregroundStyle(.secondary)
             Spacer()
-            Text(value)
+            L10n.text(value)
                 .font(.system(size: 11, weight: .medium, design: .monospaced))
                 .foregroundStyle(.primary)
         }
+    }
+
+    /// "Time to 80%" is built in the model for tests. Rebuild the interpolation so
+    /// it matches the "Time to %lld%" catalog key instead of a finished sentence.
+    @ViewBuilder
+    private func localizedDetailText(_ label: String) -> some View {
+        if let pct = Self.percentInTimeToLabel(label) {
+            Text("Time to \(pct)%")
+        } else {
+            L10n.text(label)
+        }
+    }
+
+    private static func percentInTimeToLabel(_ label: String) -> Int? {
+        let prefix = "Time to "
+        guard label.hasPrefix(prefix), label.hasSuffix("%") else { return nil }
+        return Int(label.dropFirst(prefix.count).dropLast())
     }
 
     // MARK: - Bottom Bar
@@ -374,10 +396,14 @@ struct PopoverView: View {
         HStack(spacing: 6) {
             Image(systemName: "exclamationmark.triangle.fill")
                 .font(.system(size: 10))
-            Text(needsHelperApproval
-                 ? "Helper needs approval in System Settings"
-                 : "Helper not installed — charging control unavailable")
-                .font(.system(size: 10))
+            Group {
+                if needsHelperApproval {
+                    Text("Helper needs approval in System Settings")
+                } else {
+                    Text("Helper not installed — charging control unavailable")
+                }
+            }
+            .font(.system(size: 10))
             Spacer()
             if needsHelperApproval {
                 Button("Approve") {
