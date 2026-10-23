@@ -119,9 +119,10 @@ struct PowerFlowView: View {
             case .pluggedInStopping:
                 pluggedInAdapterView {
                     let bp = battery.batteryPower ?? 0
+                    let stopping = String(localized: "Stopping\u{2026}")
                     let label = bp > 0.1
-                        ? String(format: "Stopping\u{2026} %.1f W", bp)
-                        : "Stopping\u{2026}"
+                        ? "\(stopping) \(String(format: "%.1f W", bp))"
+                        : stopping
                     flowBar(
                         label: label,
                         icon: "stop.circle",
@@ -154,8 +155,14 @@ struct PowerFlowView: View {
             Image(systemName: battery.isPluggedIn ? "bolt.fill" : "battery.75percent")
                 .foregroundStyle(.secondary)
             VStack(alignment: .leading, spacing: 2) {
-                Text(battery.isPluggedIn ? "Plugged In" : "On Battery")
-                    .font(.system(size: 11, weight: .medium))
+                Group {
+                    if battery.isPluggedIn {
+                        Text("Plugged In")
+                    } else {
+                        Text("On Battery")
+                    }
+                }
+                .font(.system(size: 11, weight: .medium))
                 Text("Power data requires SMC access")
                     .font(.system(size: 10))
                     .foregroundStyle(.secondary)
@@ -267,7 +274,7 @@ struct PowerFlowView: View {
                 .font(.system(size: 14))
                 .foregroundStyle(.secondary)
             if let label, !label.isEmpty {
-                Text(label)
+                L10n.text(label)
                     .font(.system(size: 9, weight: .medium, design: .monospaced))
                     .foregroundStyle(.secondary)
             }
@@ -291,7 +298,7 @@ struct PowerFlowView: View {
                         .frame(width: max(geo.size.width * proportion, 20))
                 }
                 .overlay(
-                    Text(label)
+                    L10n.text(label)
                         .font(.system(size: 10, weight: .medium, design: .monospaced))
                         .foregroundStyle(.primary)
                 )

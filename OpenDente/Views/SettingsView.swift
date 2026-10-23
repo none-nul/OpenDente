@@ -56,7 +56,7 @@ struct GeneralTab: View {
 
             Section("Privileged Helper") {
                 LabeledContent("Status") {
-                    Text(HelperInstaller.statusDescription)
+                    L10n.text(HelperInstaller.statusDescription)
                         .foregroundStyle(charging.isHelperInstalled ? .green : .orange)
                 }
 
@@ -137,8 +137,8 @@ struct NotificationsTab: View {
     #if DEBUG
     private func sendTestNotification() {
         let content = UNMutableNotificationContent()
-        content.title = "OpenDente Test"
-        content.body = "Notifications are working!"
+        content.title = String(localized: "OpenDente Test")
+        content.body = String(localized: "Notifications are working!")
         content.sound = .default
 
         let request = UNNotificationRequest(
@@ -391,7 +391,7 @@ struct PopoverItemRow: View {
                 .foregroundStyle(isEnabled ? .primary : .secondary)
                 .frame(width: 18)
 
-            Text(item.displayName)
+            L10n.text(item.displayName)
                 .foregroundStyle(isEnabled ? .primary : .secondary)
 
             Spacer()
@@ -560,8 +560,8 @@ struct BatteryInfoTab: View {
     }
 
     private func infoRow(_ label: String, value: String) -> some View {
-        LabeledContent(label) {
-            Text(value)
+        LabeledContent(LocalizedStringKey(label)) {
+            L10n.text(value)
                 .font(.system(.body, design: .monospaced))
                 .textSelection(.enabled)
         }
@@ -569,7 +569,7 @@ struct BatteryInfoTab: View {
 
     /// Show a value with warning if out of expected range, or "–" if unavailable
     private func validatedRow<T>(_ label: String, raw: T?, format: (T) -> String, warn: ((T) -> Bool)? = nil) -> some View {
-        LabeledContent(label) {
+        LabeledContent(LocalizedStringKey(label)) {
             if let val = raw {
                 let isWarning = warn?(val) ?? false
                 Text(format(val))
@@ -586,7 +586,7 @@ struct BatteryInfoTab: View {
 
     /// Overload for pre-formatted string values
     private func validatedRow(_ label: String, value: String, warn: Bool) -> some View {
-        LabeledContent(label) {
+        LabeledContent(LocalizedStringKey(label)) {
             Text(value)
                 .font(.system(.body, design: .monospaced))
                 .foregroundStyle(warn ? .orange : .primary)

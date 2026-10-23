@@ -28,6 +28,10 @@ build/
 # Claude Code local state
 .claude/
 
+# Local signing override and release output
+Config/Local.xcconfig
+dist/
+
 # PDF reference docs
 *.pdf
 

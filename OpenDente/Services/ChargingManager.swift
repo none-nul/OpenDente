@@ -214,7 +214,7 @@ final class ChargingManager: ObservableObject {
             log.notice("Detected Tahoe charging API (CHTE/CHIE)")
         } else if smc.keyExists("CH0B") {
             chargingAPI = .legacy
-            log.notice("Detected legacy charging API (CH0B/CH0C)")
+            log.notice("Detected legacy charging API (CH0B/CH0C) — M1/M2/M3, including macOS 14")
         } else {
             chargingAPI = .unknown
             log.notice("No charging control keys detected")

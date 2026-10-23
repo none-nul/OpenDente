@@ -1,0 +1,7 @@
+// Signing defaults. Copy Local.xcconfig.example to Local.xcconfig to override
+// DEVELOPMENT_TEAM with your own Apple Development Team ID. The include is
+// optional, so a checkout without Local.xcconfig still generates.
+CODE_SIGN_STYLE = Automatic
+DEVELOPMENT_TEAM = P4D7A49H95
+
+#include? "Local.xcconfig"

@@ -1,0 +1,4 @@
+// Copy this file to Config/Local.xcconfig (gitignored) and set your Team ID.
+// Xcode → Settings → Accounts → your Apple ID → Team. Ten characters.
+// A free Apple ID works for a personal build. That profile expires in about 7 days.
+DEVELOPMENT_TEAM = YOUR_TEAM_ID

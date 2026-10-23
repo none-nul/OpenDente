@@ -1,0 +1,174 @@
+/* Simplified Chinese. Keys are the English source strings SwiftUI interpolates.
+   Int substitutions are %lld. Keep the same specifiers in every translation. */
+
+/* Menu bar and popover */
+"Limit: %lld%" = "上限：%lld%";
+"System Limit Active" = "系统上限生效";
+"Charging" = "充电";
+"Charge Limit Reached" = "已达充电上限";
+"Sailing" = "航行";
+"Discharging" = "放电中";
+"Topping Up" = "正在充满";
+"Calibrating" = "校准中";
+"Heat Protection" = "过热保护";
+"On Battery" = "使用电池";
+"Idle" = "空闲";
+"Cancel Top Up" = "取消充满";
+"Stop Discharge" = "停止放电";
+"Top Up to 100%" = "充满到 100%";
+"Discharge to Limit" = "放电到上限";
+"SMC not available — detailed data unavailable" = "无法读取 SMC — 没有详细数据";
+"Quit" = "退出";
+"Helper needs approval in System Settings" = "需要在系统设置中批准辅助工具";
+"Helper not installed — charging control unavailable" = "辅助工具未安装 — 无法控制充电";
+"Approve" = "批准";
+"Install" = "安装";
+"macOS Charge Limit is preventing charging" = "macOS 充电上限正在阻止充电";
+"Open" = "打开";
+"Battery %lld%" = "电池 %lld%";
+
+/* Popover details */
+"Temperature" = "温度";
+"Battery Health" = "电池健康";
+"Cycle Count" = "循环次数";
+"Time Remaining" = "剩余时间";
+"System Power" = "系统功耗";
+"Adapter Power" = "适配器功率";
+"Adapter" = "适配器";
+"Manufacturer" = "制造商";
+"Adapter Model" = "适配器型号";
+"Adapter Serial" = "适配器序列号";
+"Adapter Voltage" = "适配器电压";
+"Adapter Current" = "适配器电流";
+"Battery Voltage" = "电池电压";
+"Battery Current" = "电池电流";
+"Capacity" = "容量";
+"Design Capacity" = "设计容量";
+"Battery Power" = "电池功率";
+"Not Charging Reason" = "未充电原因";
+"Not Charging" = "未充电";
+"Time to %lld%" = "充到 %lld% 还需";
+"Time to Full" = "充满还需";
+"Calculating…" = "计算中…";
+"Reached" = "已到达";
+"Charged" = "已充满";
+"Paused" = "已暂停";
+"%.1f W of %d W" = "%.1f W（额定 %d W）";
+"Unknown Adapter" = "未知适配器";
+
+/* Power flow */
+"Plugged In" = "已接通电源";
+"Power data requires SMC access" = "功率数据需要读取 SMC";
+"Starting…" = "正在开始…";
+"Stopping…" = "正在停止…";
+"AC" = "电源";
+
+/* Settings tabs */
+"General" = "通用";
+"Notifications" = "通知";
+"Status Bar" = "菜单栏";
+"Popover" = "弹出面板";
+"Battery" = "电池";
+
+/* General */
+"Launch at Login" = "登录时打开";
+"Version" = "版本";
+"Privileged Helper" = "特权辅助工具";
+"Status" = "状态";
+"Enabled" = "已启用";
+"Not Installed" = "未安装";
+"Requires Approval" = "需要批准";
+"Not Found in Bundle" = "未包含在应用内";
+"Unknown" = "未知";
+"The helper daemon is required for charging control. It runs as root to write SMC keys." = "控制充电需要这个特权辅助工具。它以 root 身份写入 SMC 键。";
+"Open System Settings" = "打开系统设置";
+"Toggle OpenDente ON in Login Items to approve the helper." = "在“登录项”里打开 OpenDente 的开关，以批准辅助工具。";
+"Install Helper" = "安装辅助工具";
+
+/* Notifications */
+"Enable Notifications" = "启用通知";
+"Events" = "事件";
+"Top Up Complete (100%)" = "充满完成 (100%)";
+"Heat Protection Active" = "过热保护已启动";
+"Discharge Complete" = "放电完成";
+"Test" = "测试";
+"Send Test Notification" = "发送测试通知";
+"OpenDente Test" = "OpenDente 测试";
+"Notifications are working!" = "通知正常。";
+"Battery has reached your charge limit. Charging paused." = "电量已达到你设置的上限，充电已暂停。";
+"Top Up Complete" = "充满完成";
+"Battery is fully charged at 100%." = "电池已充满到 100%。";
+"Charging paused due to high battery temperature." = "电池温度过高，充电已暂停。";
+"Battery has discharged to your charge limit." = "电池已放电到你设置的上限。";
+"System Charge Limit Active" = "系统充电上限生效";
+"macOS Charge Limit is preventing charging. Lower it in System Settings > Battery." = "macOS 充电上限正在阻止充电。请到“系统设置 → 电池”里把它调低。";
+"Charging Control Failed" = "充电控制失败";
+"Unable to stop charging. Try unplugging and re-plugging the charger." = "无法停止充电。试着拔掉充电器再插上。";
+"Export Failed" = "导出失败";
+
+/* Charging settings */
+"Charge Limit" = "充电上限";
+"Limit" = "上限";
+"Sailing Mode" = "航行模式";
+"Enable Sailing Mode" = "启用航行模式";
+"Range" = "区间";
+"Won't recharge until battery drops to %lld%" = "电量降到 %lld% 以下才会重新充电";
+"Enable Heat Protection" = "启用过热保护";
+"Max Temperature" = "最高温度";
+"Other" = "其他";
+"Automatic Discharge" = "自动放电";
+"Control MagSafe LED" = "控制 MagSafe 灯";
+"Turn off LED when not charging" = "不充电时关闭指示灯";
+"Off when limit reached/sailing, orange when charging. Otherwise green/orange." = "达到上限或航行时熄灭，充电时为橙色。关闭该选项时，充电为橙色、达到上限为绿色。";
+"Orange when charging, green when limit reached. Requires MagSafe." = "充电时橙色，达到上限时绿色。需要 MagSafe。";
+"Stop Charging when Sleeping" = "睡眠时停止充电";
+"Inhibits charging before sleep so the battery stays at its current level." = "睡眠前停止充电，让电量保持在当前水平。";
+"Disable Sleep until Charge Limit" = "达到上限前防止睡眠";
+"Keeps Mac awake while charging or discharging toward the limit." = "在充电或放电接近上限时保持 Mac 不睡眠。";
+"Use Hardware Battery Percentage" = "使用硬件电量百分比";
+
+/* Status bar and popover settings */
+"Show in Status Bar" = "在菜单栏显示";
+"Battery Percentage" = "电量百分比";
+"Power Usage" = "功耗";
+"Charging Mode Icon" = "充电状态图标";
+"Preview:" = "预览：";
+"Drag to reorder. Toggle to show/hide." = "拖动排序。点击眼睛图标显示或隐藏。";
+"Show Power Flow" = "显示功率流向";
+"Visible" = "显示中";
+"Hidden" = "已隐藏";
+
+/* Battery info */
+"macOS Percentage" = "macOS 电量";
+"Hardware SoC" = "硬件电量";
+"Health" = "健康度";
+"Source" = "电源来源";
+"Name" = "名称";
+"Description" = "描述";
+"Model" = "型号";
+"Wattage" = "额定功率";
+"Voltage" = "电压";
+"Current" = "电流";
+"Protocol" = "协议";
+"Serial" = "序列号";
+"Firmware" = "固件";
+"Wireless" = "无线";
+"Yes" = "是";
+"No" = "否";
+"USB-PD Profiles" = "USB-PD 档位";
+"Control" = "控制";
+"Mode" = "模式";
+"Charging API" = "充电接口";
+"Legacy (CH0B/CH0C)" = "旧版 (CH0B/CH0C)";
+"Tahoe (CHTE/CHIE)" = "新版 (CHTE/CHIE)";
+"Not detected" = "未检测到";
+"MagSafe LED" = "MagSafe 灯";
+"Auto" = "自动";
+"Off" = "关闭";
+"Green" = "绿色";
+"Orange" = "橙色";
+"SMC Available" = "SMC 可用";
+"Helper Version" = "辅助工具版本";
+"Export Diagnostic Report..." = "导出诊断报告...";
+"Exports system info, current state, settings, and recent logs as a text file for troubleshooting." = "把系统信息、当前状态、设置和最近的日志导出为文本，方便排查问题。";
+"Power Adapter" = "电源适配器";

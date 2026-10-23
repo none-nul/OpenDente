@@ -4,6 +4,10 @@
 <dict>
 	<key>Label</key>
 	<string>com.opendente.helper</string>
+	<key>AssociatedBundleIdentifiers</key>
+	<array>
+		<string>com.opendente.app</string>
+	</array>
 	<key>MachServices</key>
 	<dict>
 		<key>com.opendente.helper</key>

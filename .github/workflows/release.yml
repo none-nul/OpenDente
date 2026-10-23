@@ -1,0 +1,82 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install XcodeGen
+        run: brew install xcodegen
+
+      - name: Generate Xcode project
+        run: xcodegen generate
+
+      - name: Test
+        run: >
+          xcodebuild test
+          -project OpenDente.xcodeproj
+          -scheme OpenDente
+          -configuration Debug
+          -destination "platform=macOS,arch=arm64"
+          -derivedDataPath build/tests
+          CODE_SIGNING_ALLOWED=NO
+
+      - name: Build unsigned arm64 app
+        run: >
+          xcodebuild
+          -project OpenDente.xcodeproj
+          -scheme OpenDente
+          -configuration Release
+          -destination "platform=macOS,arch=arm64"
+          -derivedDataPath build/release
+          CODE_SIGNING_ALLOWED=NO
+          build
+
+      - name: Package
+        run: |
+          set -euo pipefail
+          APP="build/release/Build/Products/Release/OpenDente.app"
+          test -x "$APP/Contents/MacOS/OpenDente"
+          test -x "$APP/Contents/Library/HelperTools/com.opendente.helper"
+          test -f "$APP/Contents/Library/LaunchDaemons/com.opendente.helper.plist"
+          test -f "$APP/Contents/Resources/zh-Hans.lproj/Localizable.strings"
+          file "$APP/Contents/MacOS/OpenDente" | grep -q arm64
+          VERSION=$(plutil -extract CFBundleShortVersionString raw -o - "$APP/Contents/Info.plist")
+          ditto -c -k --keepParent "$APP" "OpenDente-${VERSION}-macos14-arm64-unsigned.zip"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: OpenDente-macos14-arm64-unsigned
+          path: OpenDente-*-macos14-arm64-unsigned.zip
+
+      - name: Publish GitHub release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: OpenDente-*-macos14-arm64-unsigned.zip
+          body: |
+            Unsigned arm64 build for macOS 14 and later (Apple Silicon, including M1).
+
+            This zip is not signed. Gatekeeper will block it, and the privileged helper cannot register, so charging control will not work until you build on your Mac with your own Apple Development Team ID:
+
+            ```
+            cp Config/Local.xcconfig.example Config/Local.xcconfig
+            # set DEVELOPMENT_TEAM, then:
+            ./scripts/build-release.sh
+            ```
+
+            M1 through M3 use the legacy SMC keys (CH0B/CH0C). Newer Macs use CHTE/CHIE. The app picks whichever key set is readable.
+
+            Simplified Chinese follows the system language.
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

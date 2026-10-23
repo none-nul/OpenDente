@@ -53,7 +53,7 @@ final class HelperDelegate: NSObject, NSXPCListenerDelegate, HelperProtocol {
             log.info("Detected Tahoe charging API (CHTE/CHIE)")
         } else if smc.keyExists("CH0B") {
             chargingAPI = .legacy
-            log.info("Detected legacy charging API (CH0B/CH0C)")
+            log.info("Detected legacy charging API (CH0B/CH0C) — M1/M2/M3, including macOS 14")
         } else {
             chargingAPI = .unknown
             log.info("No charging control keys detected")

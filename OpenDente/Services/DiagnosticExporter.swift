@@ -30,7 +30,7 @@ enum DiagnosticExporter {
         } catch {
             log.error("Failed to export diagnostic report: \(error.localizedDescription, privacy: .public)")
             let alert = NSAlert()
-            alert.messageText = "Export Failed"
+            alert.messageText = String(localized: "Export Failed")
             alert.informativeText = error.localizedDescription
             alert.alertStyle = .warning
             alert.runModal()
